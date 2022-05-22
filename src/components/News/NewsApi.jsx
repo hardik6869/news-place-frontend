@@ -20,6 +20,12 @@ function NewsApi() {
     getNews();
   }, []);
 
+
+    const filteredNews = newsItems.filter((news) => {
+      return news.title.toLowerCase().includes(searchText.toLowerCase());
+    });
+    
+    
   return (
     <>
       <div className="container">
@@ -39,11 +45,7 @@ function NewsApi() {
         <div className="row">
           {newsItems.length > 0 && (
             <div className="grid grid-cols-3 gap-5 sm:mx-5 mx-20 my-5">
-              {newsItems
-                .filter((item) =>
-                  item.title.toLowerCase().includes(searchText.toLowerCase())
-                )
-                .map((value) => {
+              {filteredNews.map((value) => {
                   return (
                     <div className="shadow-lg p-3" key={value._id}>
                       <div style={{ width: "100%", minHeight: "80%" }}>
